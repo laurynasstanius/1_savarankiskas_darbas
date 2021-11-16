@@ -8,6 +8,7 @@
 #include <fstream>
 #include <sstream>
 #include <chrono>
+#include <deque>
 
 using namespace std;
 
@@ -123,7 +124,7 @@ public:
 Studentas createStudentFromConsoleData();
 void writeStudentDataFromFile(string file);
 void writeStudentDataToConsole();
-void splitStudentsIntoTwoGroups(vector<Studentas> studentai);
+void splitStudentsIntoTwoGroups(deque<Studentas> studentai);
 
 void writeStudentDataFromFile(string file, bool toFile)
 {
@@ -133,7 +134,7 @@ void writeStudentDataFromFile(string file, bool toFile)
     int nd1, nd2, nd3, nd4, nd5, egz;
 
     vector<int>pazymiai;
-    vector<Studentas> studentai;
+    deque<Studentas> studentai;
 
     // Studentu duomenu nuskaitymas is failo
     auto start = chrono::high_resolution_clock::now();
@@ -236,7 +237,6 @@ Studentas createStudentFromConsoleData()
 void generateStudentsToFile(int studentCount, string file)
 {
     srand(time(0));
-    char answer;
     random_device dev;
     mt19937 rng(dev());
     uniform_int_distribution<mt19937::result_type> dist6(0, 10);
@@ -260,7 +260,7 @@ void generateStudentsToFile(int studentCount, string file)
 
 void writeStudentDataToConsole()
 {
-    vector<Studentas> studArray;
+    deque<Studentas> studArray;
     cout << "Kiek norite studentu uzregistruoti? - ";
     cin >> n;
 
@@ -286,12 +286,12 @@ void writeStudentDataToConsole()
     }
 }
 
-void splitStudentsIntoTwoGroups(vector<Studentas> studentai)
+void splitStudentsIntoTwoGroups(deque<Studentas> studentai)
 {
     ofstream lievakaiTxt;
     ofstream malaciaiTxt;
-    vector<Studentas> malaciai;
-    vector<Studentas> lievakai;
+    deque<Studentas> malaciai;
+    deque<Studentas> lievakai;
 
     // Studentu rusiavimas i malacius ir lievakus naudojant vektorius
     auto start = chrono::high_resolution_clock::now();
@@ -400,19 +400,12 @@ int main()
 
     cout << "\n";
 
-    /*start = chrono::high_resolution_clock::now();
+    start = chrono::high_resolution_clock::now();
     generateStudentsToFile(1000000, "studentuGeneravimoRez4.txt");
     end = chrono::high_resolution_clock::now();
     auto trukme4 = chrono::duration_cast<chrono::milliseconds> (end - start);
     cout << "Failo sukurimas truko milisekundemis: " << trukme4.count() << endl;
-    writeStudentDataFromFile("studentuGeneravimoRez4.txt", true);*/
-
-    /*start = chrono::high_resolution_clock::now();
-    generateStudentsToFile(10000000, "studentuGeneravimoRez5.txt");
-    end = chrono::high_resolution_clock::now();
-    auto trukme5 = chrono::duration_cast<chrono::milliseconds> (end - start);
-    cout << "Failo sukurimas truko milisekundemis: " << trukme5.count() << endl;
-    writeStudentDataFromFile("studentuGeneravimoRez5.txt", true);*/
+    writeStudentDataFromFile("studentuGeneravimoRez4.txt", true);
 
     return 0;
 }
