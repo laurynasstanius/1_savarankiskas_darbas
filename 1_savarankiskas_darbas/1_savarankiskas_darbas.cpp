@@ -9,6 +9,7 @@
 #include <sstream>
 #include <chrono>
 #include <deque>
+#include <list>
 
 using namespace std;
 
@@ -124,7 +125,7 @@ public:
 Studentas createStudentFromConsoleData();
 void writeStudentDataFromFile(string file);
 void writeStudentDataToConsole();
-void splitStudentsIntoTwoGroups(deque<Studentas> studentai);
+void splitStudentsIntoTwoGroups(list<Studentas> studentai);
 
 void writeStudentDataFromFile(string file, bool toFile)
 {
@@ -134,7 +135,8 @@ void writeStudentDataFromFile(string file, bool toFile)
     int nd1, nd2, nd3, nd4, nd5, egz;
 
     vector<int>pazymiai;
-    deque<Studentas> studentai;
+    list<Studentas> studentai;
+    list<Studentas>::iterator it;
 
     // Studentu duomenu nuskaitymas is failo
     auto start = chrono::high_resolution_clock::now();
@@ -162,12 +164,6 @@ void writeStudentDataFromFile(string file, bool toFile)
     auto end = chrono::high_resolution_clock::now();
     auto timeTook = chrono::duration_cast<chrono::milliseconds>(end - start);
     cout << "Duomenu nuskaitymas is failo truko laiko milisekundemis: " << timeTook.count() << endl;
-
-    // Studentu rikiavimas pagal varda abecele didejimo tvarka
-    sort(studentai.begin(), studentai.end(), [](Studentas& studOne, Studentas& studTwo)
-        {
-            return studOne.getFirstName() < studTwo.getFirstName();
-        });
 
     if (toFile)
     {
@@ -260,7 +256,7 @@ void generateStudentsToFile(int studentCount, string file)
 
 void writeStudentDataToConsole()
 {
-    deque<Studentas> studArray;
+    list<Studentas> studArray;
     cout << "Kiek norite studentu uzregistruoti? - ";
     cin >> n;
 
@@ -276,22 +272,17 @@ void writeStudentDataToConsole()
     cout << left << setw(20) << "Pavarde" << setw(20) << "Vardas" << setw(10) << "Galutinis(Vid.)\n";
     cout << "----------------------------------------------------------------------------------------\n";
 
-    sort(studArray.begin(), studArray.end(), [](Studentas& studOne, Studentas& studTwo)
-    {
-        return studOne.getFirstName() < studTwo.getFirstName();
-    });
-
     for (Studentas stud : studArray) {
         stud.outputData();
     }
 }
 
-void splitStudentsIntoTwoGroups(deque<Studentas> studentai)
+void splitStudentsIntoTwoGroups(list<Studentas> studentai)
 {
     ofstream lievakaiTxt;
     ofstream malaciaiTxt;
-    deque<Studentas> malaciai;
-    deque<Studentas> lievakai;
+    list<Studentas> malaciai;
+    list<Studentas> lievakai;
 
     // Studentu rusiavimas i malacius ir lievakus naudojant vektorius
     auto start = chrono::high_resolution_clock::now();
@@ -401,7 +392,7 @@ int main()
     cout << "\n";
 
     start = chrono::high_resolution_clock::now();
-    generateStudentsToFile(1000000, "studentuGeneravimoRez4.txt");
+    generateStudentsToFile(500000, "studentuGeneravimoRez4.txt");
     end = chrono::high_resolution_clock::now();
     auto trukme4 = chrono::duration_cast<chrono::milliseconds> (end - start);
     cout << "Failo sukurimas truko milisekundemis: " << trukme4.count() << endl;
