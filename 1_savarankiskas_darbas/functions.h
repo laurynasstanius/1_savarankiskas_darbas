@@ -26,8 +26,6 @@ public:
     void outputData();
 };
 
-int n;
-
 Studentas createStudentFromConsoleData();
 void writeStudentDataFromFile(string, bool);
 void generateStudentsToFile(int, string);

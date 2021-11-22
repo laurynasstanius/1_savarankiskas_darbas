@@ -98,6 +98,8 @@ __declspec(selectany) deque<Studentas> studentai; //__declspec(selectany) kad ne
 
 __declspec(selectany) deque<Studentas> lievakai;
 
+__declspec(selectany) int n;
+
 void writeStudentDataFromFile(string file, bool toFile)
 {
     int rowCounter = 0;
