@@ -94,9 +94,9 @@ void Studentas::outputData()
     cout << left << setw(20) << pavarde << setw(20) << vardas << setw(10) << fixed << setprecision(2) << finalAverage << endl;
 }
 
-__declspec(selectany) deque<Studentas> studentai; //__declspec(selectany) kad nesidubliuotu su kitais failaiss
+__declspec(selectany) vector<Studentas> studentai; //__declspec(selectany) kad nesidubliuotu su kitais failaiss
 
-__declspec(selectany) deque<Studentas> lievakai;
+__declspec(selectany) vector<Studentas> lievakai;
 
 __declspec(selectany) int n;
 
@@ -108,7 +108,7 @@ void writeStudentDataFromFile(string file, bool toFile)
     int nd1, nd2, nd3, nd4, nd5, egz;
 
     vector<int>pazymiai;
-    deque<Studentas> studentai;
+    vector<Studentas> studentai;
 
     // Studentu duomenu nuskaitymas is failo
     auto start = chrono::high_resolution_clock::now();
@@ -228,7 +228,7 @@ void generateStudentsToFile(int studentCount, string file)
 
 void writeStudentDataToConsole()
 {
-    deque<Studentas> studArray;
+    vector<Studentas> studArray;
     cout << "Kiek norite studentu uzregistruoti? - ";
     cin >> n;
 
@@ -257,10 +257,10 @@ bool vidurkioLyginimas(Studentas a) {
 
 }
 
-deque<Studentas> lievakuIeskojimas(deque<Studentas>& studentai) {
+vector<Studentas> lievakuIeskojimas(vector<Studentas>& studentai) {
 
-    deque<Studentas> lievakai;
-    deque<Studentas>::iterator it = studentai.begin();
+    vector<Studentas> lievakai;
+    vector<Studentas>::iterator it = studentai.begin();
 
     while (it != studentai.end())
     {
@@ -277,12 +277,12 @@ deque<Studentas> lievakuIeskojimas(deque<Studentas>& studentai) {
     return lievakai;
 }
 
-void splitStudentsIntoTwoGroups(deque<Studentas> studentai)
+void splitStudentsIntoTwoGroups(vector<Studentas> studentai)
 {
     ofstream lievakaiTxt;
     ofstream studentaiTxt;
-    deque<Studentas> lievakai;
-    deque<Studentas>::iterator it;
+    vector<Studentas> lievakai;
+    vector<Studentas>::iterator it;
 
     // Studentu rusiavimas i malacius ir lievakus naudojant vektorius
     auto start = chrono::high_resolution_clock::now();

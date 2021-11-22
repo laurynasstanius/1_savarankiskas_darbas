@@ -30,7 +30,7 @@ Studentas createStudentFromConsoleData();
 void writeStudentDataFromFile(string, bool);
 void generateStudentsToFile(int, string);
 void writeStudentDataToConsole();
-void splitStudentsIntoTwoGroups(deque<Studentas>);
+void splitStudentsIntoTwoGroups(vector<Studentas>);
 bool vidurkioLyginimas(Studentas);
-deque<Studentas> lievakuIeskojimas(deque<Studentas>&);
+vector<Studentas> lievakuIeskojimas(vector<Studentas>&);
 
