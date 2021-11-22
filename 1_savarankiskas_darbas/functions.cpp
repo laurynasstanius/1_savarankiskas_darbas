@@ -94,9 +94,9 @@ void Studentas::outputData()
     cout << left << setw(20) << pavarde << setw(20) << vardas << setw(10) << fixed << setprecision(2) << finalAverage << endl;
 }
 
-__declspec(selectany) vector<Studentas> studentai; //__declspec(selectany) kad nesidubliuotu su kitais failaiss
+__declspec(selectany) list<Studentas> studentai; //__declspec(selectany) kad nesidubliuotu su kitais failaiss
 
-__declspec(selectany) vector<Studentas> lievakai;
+__declspec(selectany) list<Studentas> lievakai;
 
 __declspec(selectany) int n;
 
@@ -108,7 +108,7 @@ void writeStudentDataFromFile(string file, bool toFile)
     int nd1, nd2, nd3, nd4, nd5, egz;
 
     vector<int>pazymiai;
-    vector<Studentas> studentai;
+    list<Studentas> studentai;
 
     // Studentu duomenu nuskaitymas is failo
     auto start = chrono::high_resolution_clock::now();
@@ -228,7 +228,7 @@ void generateStudentsToFile(int studentCount, string file)
 
 void writeStudentDataToConsole()
 {
-    vector<Studentas> studArray;
+    list<Studentas> studArray;
     cout << "Kiek norite studentu uzregistruoti? - ";
     cin >> n;
 
@@ -257,10 +257,10 @@ bool vidurkioLyginimas(Studentas a) {
 
 }
 
-vector<Studentas> lievakuIeskojimas(vector<Studentas>& studentai) {
+list<Studentas> lievakuIeskojimas(list<Studentas>& studentai) {
 
-    vector<Studentas> lievakai;
-    vector<Studentas>::iterator it = studentai.begin();
+    list<Studentas> lievakai;
+    list<Studentas>::iterator it = studentai.begin();
 
     while (it != studentai.end())
     {
@@ -277,12 +277,12 @@ vector<Studentas> lievakuIeskojimas(vector<Studentas>& studentai) {
     return lievakai;
 }
 
-void splitStudentsIntoTwoGroups(vector<Studentas> studentai)
+void splitStudentsIntoTwoGroups(list<Studentas> studentai)
 {
     ofstream lievakaiTxt;
     ofstream studentaiTxt;
-    vector<Studentas> lievakai;
-    vector<Studentas>::iterator it;
+    list<Studentas> lievakai;
+    list<Studentas>::iterator it;
 
     // Studentu rusiavimas i malacius ir lievakus naudojant vektorius
     auto start = chrono::high_resolution_clock::now();
