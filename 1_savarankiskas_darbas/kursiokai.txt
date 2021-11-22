@@ -1,3 +1,4 @@
 Pavarde     Vardas      ND1  ND2   ND3  ND4  ND5  Egzaminas
 Vardas1     Pavarde1    8    9     10   6    10   9
 Vardas2     Pavarde2    7    10    8    5    4    6
+Laulynukas  Staniulevic 8    10    1    1    1    2
